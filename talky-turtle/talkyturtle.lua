@@ -6,7 +6,7 @@ local MIN_DELAY_IN_S = 120
 local MAX_DELAY_IN_S = 1200
 local MESSAGES_PATH = "data/messages.txt"
 local NOTE_INSTRUMENT = "flute"
-local NOTE_VOLUME = 0.2
+local NOTE_VOLUME = 0.5
 local CHAT_NAME = "Turty"
 local CHAT_NAME_COLOR_CODE = "§2"
 local CHAT_RANGE = 12
@@ -43,7 +43,7 @@ if messages_fh == nil then
     os.exit(-1, true)
 end
 for line in messages_fh:lines() do
-    messages[message_id] = line
+    messages[message_count] = line
     message_count = message_count + 1
 end
 messages_fh:close()
@@ -53,7 +53,7 @@ while true do
     timer_id = os.startTimer(math.random(MIN_DELAY_IN_S, MAX_DELAY_IN_S))
     is_timer_complete = false
     --- Keep pulling timer events until my timer appears
-    while ~is_timer_complete do
+    while not is_timer_complete do
         event, event_timer_id = os.pullEvent("timer")
         if event_timer_id == timer_id then
             --- Mark timer as complete and speak
