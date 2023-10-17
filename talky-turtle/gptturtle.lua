@@ -35,6 +35,7 @@ while true do
             end
             speak(string.sub(response, start_index, end_index))
             start_index = end_index + 1
+            sleep(1)
         end
     end
 end
